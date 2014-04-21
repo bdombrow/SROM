@@ -1,5 +1,4 @@
 import StringIO
-import base64
 import os
 import psycopg2
 import psycopg2.extras
@@ -69,11 +68,6 @@ def application(environ, start_response):
     pl.savefig(imageString, dpi=150, format='svg')
     output += imageString.getvalue()
     imageString.close()
-#    pl.savefig(imageString, dpi=100, format='png')
-#    image64 = base64.b64encode(imageString.getvalue())
-#    imageString.close()
-#    img_tag = '<img alt="test" src="data:image/svg;base64,{0}">'.format(image64)
-#    output += img_tag
 
     output += '<br>'
     output += '<h3 align="right">Last updated '
@@ -85,9 +79,10 @@ def application(environ, start_response):
     output += '<a href="http://www.bing.com">Bing</a> search for each of several operating'
     output += ' systems, directly followed by "sucks", "rules", or "rocks".'
     
+    output += '<p><a href="https://github.com/bdombrow/SROM">Source Code</a>'
+    
     output += '<h4>To Do:</h4>'
     output += '<ul>'
-    output += '<li>Put the scripts on Github with GPL license</li>'
     output += '<li>Make a FAQ</li>'
     output += '<li>Port to flask?</li>'
     output += '</ul>'
