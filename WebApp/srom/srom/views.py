@@ -5,5 +5,4 @@ from plotting import getPlot
 @app.route('/')
 def index():
   plot, time = getPlot()
-  return render_template('index.html', figure=plot,
-   updated=time)
+  return render_template('index.html', figure=plot, updated=time)
