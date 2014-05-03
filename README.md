@@ -20,8 +20,9 @@ Working version can be found at http://bdombrowski.us/srom
 
 ## Requirements ##
 Python
-+Flask
-+matplotlib
++ Flask
++ matplotlib
+
 Apache
-+mod_wsgi
++ mod_wsgi
 
