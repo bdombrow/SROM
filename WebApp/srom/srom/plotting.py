@@ -17,7 +17,7 @@ def getPlot():
       (SELECT max(date_trunc('day', updated)) 
        FROM results_view
        WHERE name = 'Bing')
-  ORDER BY name;
+  ORDER BY term DESC;
   """
   output = ""
   updated = ""
@@ -45,6 +45,7 @@ def getPlot():
       updated = row['updated']
     
     # Generate the plot  
+    pl.figure(figsize=(10, 5))
     
     # Frame formatting
     ax = pl.axes(frameon=False)
@@ -52,8 +53,8 @@ def getPlot():
     ax.get_yaxis().tick_left()
 
     # Plot the goods
-    pl.barh(X, Y1, color='green')
-    pl.barh(X, Y2, color='red')
+    pl.barh(X, Y1, color='green', linewidth=0)
+    pl.barh(X, Y2, color='red', linewidth=0)
     
     # Calculate a padding factor for labels
     padding = 0.15 * (max(Y1) - min(Y2))
@@ -82,7 +83,6 @@ def getPlot():
     imageString.close()
   
   except Exception as exc:
-    errorString = traceback.format_exc()
     output += '<h2>Oops!</h2>'
     output += '<p>Looks like its broken.'
     updated = 'N/A'
