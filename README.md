@@ -18,20 +18,10 @@ This is an initial working version. It could use alot more polish.
 
 Working version can be found at http://bdombrowski.us/srom
 
-## Files ##
+## Requirements ##
+Python
+  Flask
+  matplotlib
+Apache
+  mod_wsgi
 
-### Database ###
-This directory contains the database schema dumped from PostgreSQL.
-
-### Collector ###
-
-#### collector.py ####
-This script will collect the search results and put them in the database.
-I run this as as cron job on a daily basis.
-
-#### Search.py ####
-This contains the search object classes used by the collector script. There are
-classes defined for each search engine. Each sub class is configured from the
-database.
-
-### WebApp ###
