@@ -22,6 +22,7 @@ Working version can be found at http://bdombrowski.us/srom
 Python
 + Flask
 + matplotlib
++ flask-wtf
 
 Apache
 + mod_wsgi
