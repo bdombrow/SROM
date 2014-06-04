@@ -22,6 +22,6 @@ def contact():
       return render_template('contact.html', form=form)
     else:
       sendMessage(form)
-      return 'Thank You.'
+      return render_template('thankyou.html')
   elif request.method == 'GET':
     return render_template('contact.html', form=form)

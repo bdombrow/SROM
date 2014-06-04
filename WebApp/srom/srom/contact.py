@@ -7,5 +7,5 @@ def sendMessage(form):
   msg["From"] = form.email.data
   msg["To"] = "brent.dombrowski@gmail.com"
   msg["Subject"] = form.subject.data
-  p = Popen(["/usr/sbin/sendmail", "-oit"], stdin=PIPE)
+  p = Popen(["/usr/sbin/sendmail", "-it"], stdin=PIPE)
   p.communicate(msg.as_string())
