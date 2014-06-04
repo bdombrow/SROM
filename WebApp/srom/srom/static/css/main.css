@@ -1,0 +1,16 @@
+/*
+ * Display navigation links inline
+ */
+ 
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu li + li {
+  margin-left: 35px;
+}

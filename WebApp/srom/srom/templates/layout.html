@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Operating System Sucks-Rules-O-Meter</title>
+    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
   </head>
   <body>
     <header>
@@ -14,6 +15,7 @@
           <li><a href="{{ url_for('faq') }}">FAQ</a></li>
           <li><a href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
+      </nav></strong>
     </header>
     <div class="container">
       {% block content %}
