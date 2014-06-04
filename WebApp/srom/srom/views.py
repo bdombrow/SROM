@@ -2,6 +2,7 @@ from srom import app
 from flask import Flask, render_template, request, flash
 from plotting import getPlot
 from forms import ContactForm
+from contact import sendMessage
 
 @app.route('/')
 def index():
@@ -20,6 +21,7 @@ def contact():
       flash("All fields are required!")
       return render_template('contact.html', form=form)
     else:
-      return 'Form posted.'
+      sendMessage(form)
+      return 'Thank You.'
   elif request.method == 'GET':
     return render_template('contact.html', form=form)
