@@ -4,10 +4,11 @@ from plotting import getPlot
 from forms import ContactForm
 from contact import sendMessage
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-  plot, time = getPlot()
-  return render_template('index.html', figure=plot, updated=time)
+  site = request.args.get('s', 'Bing')
+  plot, time = getPlot(site)
+  return render_template('index.html', figure=plot, updated=time, searchEngine = site)
   
 @app.route('/faq')
 def faq():

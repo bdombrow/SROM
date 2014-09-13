@@ -8,16 +8,13 @@ import matplotlib.cbook
 matplotlib.use("Agg")
 import matplotlib.pyplot as pl
 
-def getPlot():
+def getPlot(site):
   queryString = """
-  SELECT * 
-  FROM results_view 
-  WHERE name = 'Bing' 
-    AND date_trunc('day', updated) = 
-      (SELECT max(date_trunc('day', updated)) 
-       FROM results_view
-       WHERE name = 'Bing')
-  ORDER BY term DESC;
+    SELECT *
+    FROM results_view
+    WHERE name = %s AND date_trunc('day', updated) = (SELECT max(date_trunc('day', updated))
+                                                      FROM results_view WHERE name = %s)
+    ORDER BY term DESC;
   """
   output = ""
   updated = ""
@@ -28,7 +25,7 @@ def getPlot():
     curr = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     
     # Get the current results from Bing
-    curr.execute(queryString)
+    curr.execute(queryString, (site, site))
     rows = curr.fetchall()
     curr.close()
     conn.close()
@@ -85,6 +82,7 @@ def getPlot():
   except Exception as exc:
     output += '<h2>Oops!</h2>'
     output += '<p>Looks like its broken.'
+    output += exc.message
     updated = 'N/A'
     
   return output, updated
