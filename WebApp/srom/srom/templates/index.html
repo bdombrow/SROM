@@ -6,7 +6,7 @@
   <p>
   Shamelessly copied from <a href="http://srom.zgp.org">the original</a>
   <p>
-  <form action="/" method="get">
+  <form action="{{ url_for('index') }}" method="get">
   This operating system quality metric approval is based on a periodic
   <select name="s" onchange="this.form.submit()">
     {% for o in optionList %}
