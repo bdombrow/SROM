@@ -6,9 +6,16 @@
   <p>
   Shamelessly copied from <a href="http://srom.zgp.org">the original</a>
   <p>
+  <form action="/" method="get">
   This operating system quality metric approval is based on a periodic
-  {{ searchEngine }} search for each of several operating
+  <select name="s" onchange="this.form.submit()">
+    {% for o in optionList %}
+      <option name="{{ o }}" {% if o == selected %} SELECTED {% endif %}>{{ o }}</option>
+    {% endfor %}
+  </select>
+  search for each of several operating
   systems, directly followed by "sucks", "rules", or "rocks".
+  </form>
   <p>
   All operating system names are searched for exactly as shown above, with the
   exceptions of Mac OS, Mac OS X, and VMS. For Mac OS, the search results

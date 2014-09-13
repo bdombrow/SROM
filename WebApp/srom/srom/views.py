@@ -8,7 +8,7 @@ from contact import sendMessage
 def index():
   site = request.args.get('s', 'Bing')
   plot, time = getPlot(site)
-  return render_template('index.html', figure=plot, updated=time, searchEngine = site)
+  return render_template('index.html', figure=plot, updated=time, optionList=['Bing', 'Google Custom Search'], selected=site)
   
 @app.route('/faq')
 def faq():
