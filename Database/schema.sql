@@ -163,6 +163,7 @@ GRANT INSERT ON TABLE results TO srom_collector;
 --
 
 GRANT SELECT ON TABLE sites TO srom_collector;
+GRANT SELECT ON TABLE sites TO srom_reader;
 
 --
 -- Name: results_view; Type: ACL; Schema: public;
