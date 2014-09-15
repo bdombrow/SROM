@@ -3,13 +3,25 @@ from flask import Flask, render_template, request, flash
 from plotting import getPlot
 from forms import ContactForm
 from contact import sendMessage
+import psycopg2
 
 @app.route('/', methods=['GET'])
 def index():
-  site = request.args.get('s', 'Bing')
-  plot, time = getPlot(site)
-  return render_template('index.html', figure=plot, updated=time, optionList=['Bing', 'Google Custom Search'], selected=site)
-  
+  try:
+    conn = psycopg2.connect(database='srom', user='srom_reader', host='10.9.73.10')
+    curr = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+
+    curr.execute("SELECT name FROM sites WHERE class != 'Disabled'")
+    sites = [x.get('name') for x in curr.fetchall()]
+
+    site = request.args.get('s', 'Bing')
+    plot, time = getPlot(curr, site)
+    curr.close()
+    conn.close()
+    return render_template('index.html', figure=plot, updated=time, optionList=sites, selected=site)
+  except Exception as exc:
+    return '<h2>Oops!</h2> <p>Looks like its broken.'
+
 @app.route('/faq')
 def faq():
   return render_template('faq.html')

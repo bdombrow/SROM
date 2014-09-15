@@ -8,7 +8,7 @@ import matplotlib.cbook
 matplotlib.use("Agg")
 import matplotlib.pyplot as pl
 
-def getPlot(site):
+def getPlot(curr, site):
   queryString = """
     SELECT *
     FROM results_view
@@ -20,15 +20,10 @@ def getPlot(site):
   updated = ""
   
   try:
-    # Connect to db
-    conn = psycopg2.connect(database='srom', user='srom_reader', host='10.9.73.10')
-    curr = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    
-    # Get the current results from Bing
+
+    # Get the current results
     curr.execute(queryString, (site, site))
     rows = curr.fetchall()
-    curr.close()
-    conn.close()
     
     # Parse the results
     X = range(len(rows))
@@ -82,7 +77,6 @@ def getPlot(site):
   except Exception as exc:
     output += '<h2>Oops!</h2>'
     output += '<p>Looks like its broken.'
-    output += exc.message
     updated = 'N/A'
     
   return output, updated
