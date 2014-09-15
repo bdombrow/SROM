@@ -23,7 +23,9 @@ Python
 + Flask
 + matplotlib
 + flask-wtf
++ psycopg2
 
 Apache
 + mod_wsgi
 
+PostgreSQL
