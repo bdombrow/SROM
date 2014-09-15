@@ -75,8 +75,6 @@ def getPlot(curr, site):
     imageString.close()
   
   except Exception as exc:
-    output += '<h2>Oops!</h2>'
-    output += '<p>Looks like its broken.'
-    updated = 'N/A'
+    raise
     
   return output, updated

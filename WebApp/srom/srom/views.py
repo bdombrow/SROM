@@ -20,7 +20,7 @@ def index():
     conn.close()
     return render_template('index.html', figure=plot, updated=time, optionList=sites, selected=site)
   except Exception as exc:
-    return '<h2>Oops!</h2> <p>Looks like its broken.'
+    return render_template('error.html')
 
 @app.route('/faq')
 def faq():

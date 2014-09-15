@@ -5,6 +5,8 @@
 .menu {
   float: right;
   margin-top: 8px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .menu li {
@@ -13,4 +15,8 @@
 
 .menu li + li {
   margin-left: 25px;
+}
+
+.container {
+  margin: 50px;
 }
