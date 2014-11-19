@@ -24,6 +24,7 @@ Python
 + matplotlib
 + flask-wtf
 + psycopg2
++ requests
 
 Apache
 + mod_wsgi
