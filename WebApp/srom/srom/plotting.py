@@ -63,12 +63,6 @@ def getPlot(curr, site):
       
     # Add the Y labels
     pl.yticks(X, terms)
-    ax.set_yticklabels(terms, url='http://www.google.com')
-
-    # labels = ax.get_yticklabels()
-    # for label in labels:
-    #     print label.get_text(), label.get_url()
-    # ax.set_yticklabels(labels)
 
     # Add in the top labels
     pl.text(min(Y2) / 2, len(X) + 1, 'sucks', ha='center', va='center')
