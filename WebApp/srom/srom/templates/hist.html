@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+  {{ figure|safe }}
+  <br>
+  <h3 align="right">Last updated {{ updated }}</h3>
+  <form action="{{ url_for('hist') }}" method="get">
+  <select name="t" onchange="this.form.submit()">
+    {% for o in termList %}
+      <option name="{{ o }}" {% if o == selectedTerm %} SELECTED {% endif %}>{{ o }}</option>
+    {% endfor %}
+  </select>
+  <select name="s" onchange="this.form.submit()">
+    {% for o in optionList %}
+      <option name="{{ o }}" {% if o == selected %} SELECTED {% endif %}>{{ o }}</option>
+    {% endfor %}
+  </select>
+  </form>
+{% endblock %}

@@ -61,11 +61,20 @@ def getPlot(curr, site):
     for x, y in zip(X, Y2):
       pl.text(y - padding/12, x, '%d' % -y, ha='right', va='center')
       
-    # Add in the top labels
+    # Add the Y labels
     pl.yticks(X, terms)
+    ax.set_yticklabels(terms, url='http://www.google.com')
+
+    # labels = ax.get_yticklabels()
+    # for label in labels:
+    #     print label.get_text(), label.get_url()
+    # ax.set_yticklabels(labels)
+
+    # Add in the top labels
     pl.text(min(Y2) / 2, len(X) + 1, 'sucks', ha='center', va='center')
     pl.text(max(Y1) / 2, len(X) + 1, 'rocks/rules', ha='center', va='center')
-    
+
+    # Ditch the X labels
     pl.tick_params(axis='x', which='both', bottom='off', top='off', labelbottom='off')
     
     # Generate an SVG string for the plot       
@@ -77,4 +86,47 @@ def getPlot(curr, site):
   except Exception as exc:
     raise
     
+  return output, updated
+
+def getHistoricalPlot(curr, term, site):
+
+  queryString = """
+    SELECT updated, positive_count, negative_count FROM results_view WHERE term = %s AND name = %s ORDER BY updated ASC;
+    """
+  output = ""
+  updated = ""
+  X = []
+  Y1 = []
+  Y2 = []
+
+  # Run the query
+
+  try:
+    curr.execute(queryString, (term, site))
+    rows = curr.fetchall()
+
+    for row in rows:
+      X.append(row['updated'])
+      Y1.append(row['positive_count'])
+      Y2.append(row['negative_count'])
+
+    updated = max(X)
+
+    print "Generating Plot"
+    # Generate the plot
+    pl.figure(figsize=(10, 5))
+
+    pl.plot(X, Y1, label='rocks/rules', color='green')
+    pl.plot(X, Y2, label='sucks', color='red')
+    pl.legend(loc='best')
+
+    # Generate an SVG string for the plot
+    imageString = StringIO.StringIO()
+    pl.savefig(imageString, dpi=150, format='svg')
+    output = imageString.getvalue()
+    imageString.close()
+
+  except Exception as exc:
+    raise
+
   return output, updated
