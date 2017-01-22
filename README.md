@@ -16,8 +16,6 @@ free and I wanted an excuse to play around with matplotlib.
 
 This is an initial working version. It could use alot more polish.
 
-Working version can be found at http://bdombrowski.us/srom
-
 ## Requirements ##
 Python
 + Flask
